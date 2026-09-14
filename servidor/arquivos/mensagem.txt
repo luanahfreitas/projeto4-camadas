@@ -1,0 +1,20 @@
+CAMADA FISICA DA COMPUTACAO - PROJETO 3
+=======================================
+
+Se voce esta lendo este texto no computador do CLIENTE, quer dizer que
+o arquivo atravessou o cabo serial fragmentado em datagramas de no
+maximo 100 bytes de payload, cada um confirmado com um ACK, e foi
+remontado na ordem certa do outro lado.
+
+Cada pacote levou junto:
+  - um HEAD de 12 bytes, dizendo de qual arquivo ele e, qual o seu
+    numero, quantos pacotes existem no total e um checksum;
+  - o payload com o pedaco do arquivo;
+  - um EOP de 4 bytes (AA BB CC DD) marcando o fim do pacote.
+
+Se algum pacote tivesse chegado corrompido, o checksum nao bateria e o
+cliente teria pedido o reenvio com um NACK. Se o fio tivesse caido no
+meio do caminho, o servidor teria reenviado o mesmo pacote ate a
+conexao voltar.
+
+Deu tudo certo. Fim do arquivo.
